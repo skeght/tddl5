@@ -197,6 +197,7 @@ public class CursorFactoryDefaultImpl implements ICursorFactory {
             closeParentCursor(rightCursor);
             throw new TddlException(e);
         }
+        
     }
 
     @Override
