@@ -1,32 +1,5 @@
 package com.taobao.tddl.group.jdbc;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.NClob;
-import java.sql.ParameterMetaData;
-import java.sql.PreparedStatement;
-import java.sql.Ref;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.RowId;
-import java.sql.SQLException;
-import java.sql.SQLXML;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import com.taobao.tddl.atom.jdbc.DataChannel;
 import com.taobao.tddl.atom.jdbc.TPreparedStatement;
 import com.taobao.tddl.atom.utils.LoadFileUtils;
@@ -35,13 +8,20 @@ import com.taobao.tddl.common.jdbc.ParameterMethod;
 import com.taobao.tddl.common.jdbc.Parameters;
 import com.taobao.tddl.common.jdbc.SqlTypeParser;
 import com.taobao.tddl.common.model.SqlType;
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.group.config.GroupIndex;
 import com.taobao.tddl.group.dbselector.DBSelector.AbstractDataSourceTryer;
 import com.taobao.tddl.group.dbselector.DBSelector.DataSourceTryer;
 import com.taobao.tddl.group.utils.GroupHintParser;
 
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 
 /**
  * @author linxuan
@@ -532,6 +512,16 @@ public class TGroupPreparedStatement extends TGroupStatement implements TPrepare
     @Override
     public boolean isPoolable() throws SQLException {
         throw new SQLException("not support exception");
+    }
+
+    @Override
+    public void closeOnCompletion() throws SQLException {
+
+    }
+
+    @Override
+    public boolean isCloseOnCompletion() throws SQLException {
+        return false;
     }
 
     @Override

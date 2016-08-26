@@ -1,30 +1,15 @@
 package com.taobao.tddl.atom.jdbc;
 
+import com.taobao.tddl.atom.utils.LoadFileUtils;
+import com.taobao.tddl.common.jdbc.SqlTypeParser;
+import com.taobao.tddl.monitor.unit.RouterUnitsHelper;
+
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Date;
-import java.sql.NClob;
-import java.sql.ParameterMetaData;
-import java.sql.PreparedStatement;
-import java.sql.Ref;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.RowId;
-import java.sql.SQLException;
-import java.sql.SQLXML;
-import java.sql.Statement;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.Calendar;
-
-import com.taobao.tddl.atom.utils.LoadFileUtils;
-import com.taobao.tddl.common.jdbc.SqlTypeParser;
-import com.taobao.tddl.monitor.unit.RouterUnitsHelper;
 
 /**
  * preparedStatement 包装类
@@ -288,6 +273,16 @@ public class TPreparedStatementWrapper extends TStatementWrapper implements TPre
     @Override
     public boolean isPoolable() throws SQLException {
         return ((PreparedStatement) targetStatement).isPoolable();
+    }
+
+    @Override
+    public void closeOnCompletion() throws SQLException {
+
+    }
+
+    @Override
+    public boolean isCloseOnCompletion() throws SQLException {
+        return false;
     }
 
     @Override

@@ -705,6 +705,16 @@ public class ResultSetAutoCloseConnection implements ResultSet {
         rs.updateNClob(columnLabel, reader);
     }
 
+    @Override
+    public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+        return null;
+    }
+
     public void updateNString(int columnIndex, String nString) throws SQLException {
         rs.updateNString(columnIndex, nString);
     }

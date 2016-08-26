@@ -1,27 +1,22 @@
 package com.taobao.tddl.group.jdbc;
 
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.List;
-
 import com.taobao.tddl.atom.jdbc.DataChannel;
 import com.taobao.tddl.atom.jdbc.TStatement;
 import com.taobao.tddl.common.exception.TddlNestableRuntimeException;
 import com.taobao.tddl.common.jdbc.SqlTypeParser;
 import com.taobao.tddl.common.model.SqlMetaData;
 import com.taobao.tddl.common.model.SqlType;
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.group.config.GroupIndex;
 import com.taobao.tddl.group.dbselector.DBSelector.AbstractDataSourceTryer;
 import com.taobao.tddl.group.dbselector.DBSelector.DataSourceTryer;
 import com.taobao.tddl.group.utils.GroupHintParser;
 
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
+import java.io.InputStream;
+import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author linxuan
@@ -626,6 +621,16 @@ public class TGroupStatement implements TStatement {
     @Override
     public boolean isPoolable() throws SQLException {
         throw new SQLException("not support exception");
+    }
+
+    @Override
+    public void closeOnCompletion() throws SQLException {
+
+    }
+
+    @Override
+    public boolean isCloseOnCompletion() throws SQLException {
+        return false;
     }
 
     @Override

@@ -1,31 +1,5 @@
 package com.taobao.tddl.group.jdbc;
 
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.CallableStatement;
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.NClob;
-import java.sql.ResultSet;
-import java.sql.SQLClientInfoException;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Savepoint;
-import java.sql.Statement;
-import java.sql.Struct;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.taobao.tddl.atom.jdbc.TConnectionWrapper;
 import com.taobao.tddl.atom.utils.EncodingUtils;
 import com.taobao.tddl.common.exception.TddlNestableRuntimeException;
@@ -33,15 +7,19 @@ import com.taobao.tddl.common.jdbc.IConnection;
 import com.taobao.tddl.common.jdbc.ITransactionPolicy;
 import com.taobao.tddl.common.jdbc.TExceptionUtils;
 import com.taobao.tddl.common.model.SqlMetaData;
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.group.config.GroupIndex;
 import com.taobao.tddl.group.dbselector.DBSelector;
 import com.taobao.tddl.group.dbselector.DBSelector.AbstractDataSourceTryer;
 import com.taobao.tddl.group.dbselector.DBSelector.DataSourceTryer;
 import com.taobao.tddl.group.utils.GroupHintParser;
 import com.taobao.tddl.monitor.unit.RouterUnitsHelper;
+import org.apache.commons.lang.StringUtils;
 
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
+import java.sql.*;
+import java.util.*;
+import java.util.concurrent.Executor;
 
 /**
  * <pre>
@@ -820,6 +798,31 @@ public class TGroupConnection implements IConnection {
     @Override
     public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
         throw new SQLException("not support exception");
+    }
+
+    @Override
+    public void setSchema(String schema) throws SQLException {
+
+    }
+
+    @Override
+    public String getSchema() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public void abort(Executor executor) throws SQLException {
+
+    }
+
+    @Override
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+
+    }
+
+    @Override
+    public int getNetworkTimeout() throws SQLException {
+        return 0;
     }
 
     @Override

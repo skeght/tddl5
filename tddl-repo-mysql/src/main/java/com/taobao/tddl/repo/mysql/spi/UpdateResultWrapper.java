@@ -1149,4 +1149,14 @@ public class UpdateResultWrapper implements ResultSet {
         throw new TddlException(ErrorCode.ERR_NOT_SUPPORT);
     }
 
+    @Override
+    public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+        return null;
+    }
+
 }

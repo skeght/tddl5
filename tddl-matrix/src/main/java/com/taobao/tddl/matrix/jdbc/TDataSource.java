@@ -1,23 +1,5 @@
 package com.taobao.tddl.matrix.jdbc;
 
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
-
-import javax.sql.DataSource;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.taobao.tddl.common.TddlConstants;
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.exception.TddlRuntimeException;
@@ -35,6 +17,20 @@ import com.taobao.tddl.matrix.config.MatrixConfigHolder;
 import com.taobao.tddl.monitor.logger.LoggerInit;
 import com.taobao.tddl.monitor.unit.RouterUnitsHelper;
 import com.taobao.tddl.statistics.SQLRecorder;
+import org.apache.commons.lang.StringUtils;
+
+import javax.sql.DataSource;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
 
 /**
  * matrix的jdbc datasource实现
@@ -332,6 +328,11 @@ public class TDataSource extends AbstractLifecycle implements DataSource {
     @Override
     public int getLoginTimeout() throws SQLException {
         throw new UnsupportedOperationException("getLoginTimeout");
+    }
+
+    @Override
+    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return null;
     }
 
     @Override

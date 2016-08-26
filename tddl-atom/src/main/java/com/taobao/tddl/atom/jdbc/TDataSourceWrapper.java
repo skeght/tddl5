@@ -1,16 +1,5 @@
 package com.taobao.tddl.atom.jdbc;
 
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
-
-import javax.sql.DataSource;
-
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
@@ -18,12 +7,7 @@ import com.taobao.tddl.atom.TAtomDbStatusEnum;
 import com.taobao.tddl.atom.TAtomDbTypeEnum;
 import com.taobao.tddl.atom.config.TAtomDsConfDO;
 import com.taobao.tddl.atom.exception.AtomNotAvailableException;
-import com.taobao.tddl.atom.utils.ConnRestrictEntry;
-import com.taobao.tddl.atom.utils.ConnRestrictSlot;
-import com.taobao.tddl.atom.utils.ConnRestrictor;
-import com.taobao.tddl.atom.utils.CountPunisher;
-import com.taobao.tddl.atom.utils.SmoothValve;
-import com.taobao.tddl.atom.utils.TimesliceFlowControl;
+import com.taobao.tddl.atom.utils.*;
 import com.taobao.tddl.common.exception.TddlNestableRuntimeException;
 import com.taobao.tddl.common.jdbc.sorter.ExceptionSorter;
 import com.taobao.tddl.common.jdbc.sorter.MySQLExceptionSorter;
@@ -33,6 +17,18 @@ import com.taobao.tddl.monitor.Monitor;
 import com.taobao.tddl.monitor.SnapshotValuesOutputCallBack;
 import com.taobao.tddl.monitor.stat.AbstractStatLogWriter.LogCounter;
 import com.taobao.tddl.monitor.stat.StatLogWriter;
+
+import javax.sql.DataSource;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Logger;
 
 public class TDataSourceWrapper implements DataSource, SnapshotValuesOutputCallBack {
 
@@ -403,6 +399,11 @@ public class TDataSourceWrapper implements DataSource, SnapshotValuesOutputCallB
     @Override
     public int getLoginTimeout() throws SQLException {
         return targetDataSource.getLoginTimeout();
+    }
+
+    @Override
+    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return null;
     }
 
     /**

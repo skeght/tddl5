@@ -1,19 +1,18 @@
 package com.taobao.tddl.atom;
 
-import java.sql.SQLException;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
 import com.alibaba.druid.pool.DruidDataSource;
 import com.taobao.tddl.atom.config.TAtomDsConfDO;
 import com.taobao.tddl.atom.config.TAtomDsConfHandle;
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.exception.TddlNestableRuntimeException;
 import com.taobao.tddl.common.exception.code.ErrorCode;
-
 import com.taobao.tddl.common.utils.logger.Logger;
 import com.taobao.tddl.common.utils.logger.LoggerFactory;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.Map;
 
 /**
  * 静态剥离的druid数据源，不支持动态改参数 主要用来方便测试
@@ -205,5 +204,10 @@ public class StaticTAtomDataSource extends AbstractTAtomDataSource {
     @Override
     public TAtomDbTypeEnum getDbType() {
         return confDO.getDbTypeEnum();
+    }
+
+    @Override
+    public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return null;
     }
 }

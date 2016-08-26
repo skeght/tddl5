@@ -1,10 +1,5 @@
 package com.taobao.tddl.atom;
 
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.taobao.tddl.atom.common.TAtomConstants;
 import com.taobao.tddl.atom.config.TAtomDsConfHandle;
 import com.taobao.tddl.atom.config.listener.AtomDbStatusListener;
@@ -14,6 +9,12 @@ import com.taobao.tddl.common.utils.TStringUtil;
 import com.taobao.tddl.common.utils.logger.Logger;
 import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.monitor.logger.LoggerInit;
+
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 动态数据源，支持数据源参数动态修改
@@ -166,4 +167,8 @@ public class TAtomDataSource extends AbstractTAtomDataSource {
         return this.dsConfHandle.getDataSource();
     }
 
+    @Override
+    public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return null;
+    }
 }

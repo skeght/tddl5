@@ -1,33 +1,5 @@
 package com.taobao.tddl.matrix.jdbc;
 
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.CallableStatement;
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.NClob;
-import java.sql.ResultSet;
-import java.sql.SQLClientInfoException;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Savepoint;
-import java.sql.Statement;
-import java.sql.Struct;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-
-import javax.sql.DataSource;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.taobao.tddl.client.RouteCondition;
 import com.taobao.tddl.client.RouteCondition.ROUTE_TYPE;
 import com.taobao.tddl.common.GroupDataSourceRouteHelper;
@@ -45,6 +17,8 @@ import com.taobao.tddl.common.model.hint.DirectlyRouteCondition;
 import com.taobao.tddl.common.plugin.PreSqlPlugin;
 import com.taobao.tddl.common.utils.GeneralUtil;
 import com.taobao.tddl.common.utils.TStringUtil;
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.executor.MatrixExecutor;
 import com.taobao.tddl.executor.common.ExecutionContext;
 import com.taobao.tddl.executor.common.ExecutorContext;
@@ -65,9 +39,13 @@ import com.taobao.tddl.optimizer.OptimizerContext;
 import com.taobao.tddl.optimizer.parse.SqlAnalysisResult;
 import com.taobao.tddl.optimizer.parse.hint.SimpleHintParser;
 import com.taobao.tddl.statistics.SQLTracer;
+import org.apache.commons.lang.StringUtils;
 
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
+import javax.sql.DataSource;
+import java.sql.*;
+import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 
 /**
  * @author mengshi.sunmengshi 2013-11-22 下午3:26:06
@@ -687,6 +665,31 @@ public class TConnection implements IConnection {
     @Override
     public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
         throw new SQLException("not support exception");
+    }
+
+    @Override
+    public void setSchema(String schema) throws SQLException {
+
+    }
+
+    @Override
+    public String getSchema() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public void abort(Executor executor) throws SQLException {
+
+    }
+
+    @Override
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+
+    }
+
+    @Override
+    public int getNetworkTimeout() throws SQLException {
+        return 0;
     }
 
     @Override

@@ -1,15 +1,10 @@
 package com.taobao.tddl.matrix.jdbc;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.RowIdLifetime;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
 import com.taobao.tddl.common.utils.version.Version;
 import com.taobao.tddl.executor.spi.IGroupExecutor;
+
+import javax.sql.DataSource;
+import java.sql.*;
 
 /**
  * @author mengshi.sunmengshi 2013-12-6 下午3:38:38
@@ -228,6 +223,16 @@ public class TDatabaseMetaData implements DatabaseMetaData {
     public ResultSet getFunctionColumns(String catalog, String schemaPattern, String functionNamePattern,
                                         String columnNamePattern) throws SQLException {
         return getDatabaseMetaData().getFunctionColumns(catalog, schemaPattern, functionNamePattern, columnNamePattern);
+    }
+
+    @Override
+    public ResultSet getPseudoColumns(String catalog, String schemaPattern, String tableNamePattern, String columnNamePattern) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public boolean generatedKeyAlwaysReturned() throws SQLException {
+        return false;
     }
 
     public ResultSet getSchemas(String catalog, String schemaPattern) throws SQLException {

@@ -1,32 +1,14 @@
 package com.taobao.tddl.atom.jdbc;
 
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.CallableStatement;
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.NClob;
-import java.sql.PreparedStatement;
-import java.sql.SQLClientInfoException;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Savepoint;
-import java.sql.Statement;
-import java.sql.Struct;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-
 import com.taobao.tddl.atom.utils.AtomDataSourceHelper;
 import com.taobao.tddl.atom.utils.ConnRestrictSlot;
 import com.taobao.tddl.common.model.SqlMetaData;
-
 import com.taobao.tddl.common.utils.logger.Logger;
 import com.taobao.tddl.common.utils.logger.LoggerFactory;
+
+import java.sql.*;
+import java.util.*;
+import java.util.concurrent.Executor;
 
 public class TConnectionWrapper implements Connection {
 
@@ -402,6 +384,31 @@ public class TConnectionWrapper implements Connection {
     @Override
     public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
         return this.targetConnection.createStruct(typeName, attributes);
+    }
+
+    @Override
+    public void setSchema(String schema) throws SQLException {
+
+    }
+
+    @Override
+    public String getSchema() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public void abort(Executor executor) throws SQLException {
+
+    }
+
+    @Override
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+
+    }
+
+    @Override
+    public int getNetworkTimeout() throws SQLException {
+        return 0;
     }
 
     public SqlMetaData getSqlMetaData() {

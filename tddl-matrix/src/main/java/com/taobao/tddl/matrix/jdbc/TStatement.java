@@ -1,5 +1,18 @@
 package com.taobao.tddl.matrix.jdbc;
 
+import com.taobao.tddl.common.exception.TddlNestableRuntimeException;
+import com.taobao.tddl.common.jdbc.IStatement;
+import com.taobao.tddl.common.jdbc.Parameters;
+import com.taobao.tddl.common.properties.ConnectionProperties;
+import com.taobao.tddl.common.utils.GeneralUtil;
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
+import com.taobao.tddl.executor.common.ExecutionContext;
+import com.taobao.tddl.executor.cursor.ResultCursor;
+import com.taobao.tddl.executor.cursor.impl.ArrayResultCursor;
+import com.taobao.tddl.optimizer.OptimizerContext;
+import com.taobao.tddl.optimizer.core.datatype.DataType;
+
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,20 +21,6 @@ import java.sql.SQLWarning;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.taobao.tddl.common.exception.TddlNestableRuntimeException;
-import com.taobao.tddl.common.jdbc.IStatement;
-import com.taobao.tddl.common.jdbc.Parameters;
-import com.taobao.tddl.common.properties.ConnectionProperties;
-import com.taobao.tddl.common.utils.GeneralUtil;
-import com.taobao.tddl.executor.common.ExecutionContext;
-import com.taobao.tddl.executor.cursor.ResultCursor;
-import com.taobao.tddl.executor.cursor.impl.ArrayResultCursor;
-import com.taobao.tddl.optimizer.OptimizerContext;
-import com.taobao.tddl.optimizer.core.datatype.DataType;
-
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
 
 /**
  * @author mengshi.sunmengshi 2013-11-22 下午3:26:28
@@ -459,6 +458,16 @@ public class TStatement implements IStatement {
     @Override
     public boolean isPoolable() throws SQLException {
         throw new SQLException("not support exception");
+    }
+
+    @Override
+    public void closeOnCompletion() throws SQLException {
+
+    }
+
+    @Override
+    public boolean isCloseOnCompletion() throws SQLException {
+        return false;
     }
 
     @Override

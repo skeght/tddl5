@@ -1,14 +1,9 @@
 package com.taobao.tddl.group.jdbc;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.RowIdLifetime;
-import java.sql.SQLException;
+import com.taobao.tddl.group.exception.GroupNotAvaliableException;
 
 import javax.sql.DataSource;
-
-import com.taobao.tddl.group.exception.GroupNotAvaliableException;
+import java.sql.*;
 
 /**
  * @author linxuan
@@ -180,6 +175,16 @@ public class TGroupDatabaseMetaData implements DatabaseMetaData {
     public ResultSet getFunctionColumns(String catalog, String schemaPattern, String functionNamePattern,
                                         String columnNamePattern) throws SQLException {
         return getDatabaseMetaData().getFunctionColumns(catalog, schemaPattern, functionNamePattern, columnNamePattern);
+    }
+
+    @Override
+    public ResultSet getPseudoColumns(String catalog, String schemaPattern, String tableNamePattern, String columnNamePattern) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public boolean generatedKeyAlwaysReturned() throws SQLException {
+        return false;
     }
 
     public ResultSet getFunctions(String catalog, String schemaPattern, String functionNamePattern) throws SQLException {

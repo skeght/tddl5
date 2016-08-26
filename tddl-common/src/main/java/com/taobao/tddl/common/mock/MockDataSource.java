@@ -1,18 +1,15 @@
 package com.taobao.tddl.common.mock;
 
+import com.taobao.tddl.common.exception.NotSupportException;
+import com.taobao.tddl.common.model.DBType;
+
+import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
-import com.taobao.tddl.common.exception.NotSupportException;
-import com.taobao.tddl.common.model.DBType;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.*;
+import java.util.logging.Logger;
 
 public class MockDataSource implements DataSource, Cloneable {
 
@@ -343,6 +340,11 @@ public class MockDataSource implements DataSource, Cloneable {
 
     public int getLoginTimeout() throws SQLException {
         throw new NotSupportException("");
+    }
+
+    @Override
+    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return null;
     }
 
     public void setLogWriter(PrintWriter out) throws SQLException {

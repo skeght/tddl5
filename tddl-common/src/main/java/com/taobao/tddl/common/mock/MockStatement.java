@@ -1,18 +1,13 @@
 package com.taobao.tddl.common.mock;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.taobao.tddl.common.exception.NotSupportException;
 import com.taobao.tddl.common.mock.MockDataSource.ExecuteInfo;
-
 import com.taobao.tddl.common.utils.logger.Logger;
 import com.taobao.tddl.common.utils.logger.LoggerFactory;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MockStatement implements Statement {
@@ -329,6 +324,16 @@ public class MockStatement implements Statement {
     }
 
     public boolean isPoolable() throws SQLException {
+        return false;
+    }
+
+    @Override
+    public void closeOnCompletion() throws SQLException {
+
+    }
+
+    @Override
+    public boolean isCloseOnCompletion() throws SQLException {
         return false;
     }
 

@@ -1,20 +1,15 @@
 package com.taobao.tddl.atom.jdbc;
 
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.Statement;
-
 import com.taobao.tddl.atom.TAtomDbStatusEnum;
 import com.taobao.tddl.common.jdbc.SqlTypeParser;
 import com.taobao.tddl.common.model.SqlMetaData;
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.monitor.eagleeye.EagleeyeHelper;
 import com.taobao.tddl.monitor.unit.RouterUnitsHelper;
 
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
+import java.io.InputStream;
+import java.sql.*;
 
 /**
  * Statement 包装类
@@ -463,6 +458,16 @@ public class TStatementWrapper implements TStatement {
     @Override
     public boolean isPoolable() throws SQLException {
         return this.targetStatement.isPoolable();
+    }
+
+    @Override
+    public void closeOnCompletion() throws SQLException {
+
+    }
+
+    @Override
+    public boolean isCloseOnCompletion() throws SQLException {
+        return false;
     }
 
     @Override

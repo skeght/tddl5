@@ -1,30 +1,5 @@
 package com.taobao.tddl.matrix.jdbc;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Date;
-import java.sql.NClob;
-import java.sql.Ref;
-import java.sql.ResultSet;
-import java.sql.RowId;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Statement;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.exception.TddlNestableRuntimeException;
 import com.taobao.tddl.common.utils.GeneralUtil;
@@ -34,6 +9,14 @@ import com.taobao.tddl.executor.cursor.ResultCursor;
 import com.taobao.tddl.executor.rowset.IRowSet;
 import com.taobao.tddl.executor.utils.ExecUtils;
 import com.taobao.tddl.optimizer.config.table.ColumnMeta;
+
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 
 /**
  * @author mengshi.sunmengshi 2013-11-22 下午3:26:23
@@ -1427,6 +1410,16 @@ public class TResultSet implements ResultSet {
     @Override
     public void updateNClob(String columnLabel, Reader reader) throws SQLException {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+        return null;
     }
 
     @Override

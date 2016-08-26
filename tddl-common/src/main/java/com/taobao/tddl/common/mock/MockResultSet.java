@@ -1,33 +1,16 @@
 package com.taobao.tddl.common.mock;
 
+import com.taobao.tddl.common.exception.NotSupportException;
+import com.taobao.tddl.common.mock.MockDataSource.ExecuteInfo;
+import com.taobao.tddl.common.mock.MockDataSource.QueryResult;
+
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
+import java.sql.*;
 import java.sql.Date;
-import java.sql.NClob;
-import java.sql.Ref;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.RowId;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Statement;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.taobao.tddl.common.exception.NotSupportException;
-import com.taobao.tddl.common.mock.MockDataSource.ExecuteInfo;
-import com.taobao.tddl.common.mock.MockDataSource.QueryResult;
+import java.util.*;
 
 public class MockResultSet implements ResultSet {
 
@@ -865,6 +848,16 @@ public class MockResultSet implements ResultSet {
 
     public void updateNClob(String columnLabel, Reader reader) throws SQLException {
 
+    }
+
+    @Override
+    public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+        return null;
     }
 
 }

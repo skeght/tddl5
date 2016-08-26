@@ -1,58 +1,22 @@
 package com.taobao.tddl.executor.spi;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.model.Group;
 import com.taobao.tddl.common.properties.ConnectionProperties;
 import com.taobao.tddl.common.utils.GeneralUtil;
 import com.taobao.tddl.executor.common.ExecutionContext;
 import com.taobao.tddl.executor.common.ExecutorContext;
-import com.taobao.tddl.executor.cursor.Cursor;
-import com.taobao.tddl.executor.cursor.IAggregateCursor;
-import com.taobao.tddl.executor.cursor.IBlockNestedLoopCursor;
-import com.taobao.tddl.executor.cursor.IColumnAliasCursor;
-import com.taobao.tddl.executor.cursor.ICursorMeta;
-import com.taobao.tddl.executor.cursor.IInCursor;
-import com.taobao.tddl.executor.cursor.IIndexNestLoopCursor;
-import com.taobao.tddl.executor.cursor.ILimitFromToCursor;
-import com.taobao.tddl.executor.cursor.IMergeCursor;
-import com.taobao.tddl.executor.cursor.IMergeSortJoinCursor;
-import com.taobao.tddl.executor.cursor.IRangeCursor;
-import com.taobao.tddl.executor.cursor.IReverseOrderCursor;
-import com.taobao.tddl.executor.cursor.ISchematicCursor;
-import com.taobao.tddl.executor.cursor.ISetOrderCursor;
-import com.taobao.tddl.executor.cursor.ITempTableSortCursor;
-import com.taobao.tddl.executor.cursor.ResultCursor;
-import com.taobao.tddl.executor.cursor.SchematicCursor;
-import com.taobao.tddl.executor.cursor.impl.AffectRowCursor;
-import com.taobao.tddl.executor.cursor.impl.AggregateCursor;
-import com.taobao.tddl.executor.cursor.impl.BlockNestedtLoopCursor;
-import com.taobao.tddl.executor.cursor.impl.ColumnAliasCursor;
-import com.taobao.tddl.executor.cursor.impl.InCursor;
-import com.taobao.tddl.executor.cursor.impl.IndexNestedLoopMgetImpCursor;
-import com.taobao.tddl.executor.cursor.impl.LimitFromToCursor;
-import com.taobao.tddl.executor.cursor.impl.MergeCursor;
-import com.taobao.tddl.executor.cursor.impl.MergeSortedCursors;
-import com.taobao.tddl.executor.cursor.impl.RangeCursor;
-import com.taobao.tddl.executor.cursor.impl.ReverseOrderCursor;
-import com.taobao.tddl.executor.cursor.impl.SetOrderByCursor;
-import com.taobao.tddl.executor.cursor.impl.SortCursor;
-import com.taobao.tddl.executor.cursor.impl.SortMergeJoinCursor;
-import com.taobao.tddl.executor.cursor.impl.TempTableCursor;
-import com.taobao.tddl.executor.cursor.impl.TempTableSortCursor;
-import com.taobao.tddl.executor.cursor.impl.ValueFilterCursor;
-import com.taobao.tddl.optimizer.core.expression.IColumn;
-import com.taobao.tddl.optimizer.core.expression.IFilter;
+import com.taobao.tddl.executor.cursor.*;
+import com.taobao.tddl.executor.cursor.impl.*;
+import com.taobao.tddl.optimizer.core.expression.*;
 import com.taobao.tddl.optimizer.core.expression.IFilter.OPERATION;
-import com.taobao.tddl.optimizer.core.expression.IFunction;
-import com.taobao.tddl.optimizer.core.expression.IOrderBy;
-import com.taobao.tddl.optimizer.core.expression.ISelectable;
 import com.taobao.tddl.optimizer.core.plan.IQueryTree;
 import com.taobao.tddl.optimizer.core.plan.query.IJoin;
 import com.taobao.tddl.optimizer.core.plan.query.IMerge;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 默认的cursor工厂
@@ -244,6 +208,7 @@ public class CursorFactoryDefaultImpl implements ICursorFactory {
             closeParentCursor(cursor);
             throw new TddlException(e);
         }
+
     }
 
     @Override
